@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.income.IncomeMapper">
+
+	<resultMap type="income" id="incomeMap">
+		<id column="id" property="id"/>
+		<result column="icmnumber" property="icmnumber"/>
+		<result column="icmdate"  property="icmdate"/>
+		<result column="source" property="source"/> 
+		<result column="msg" property="msg"/>
+		<association property="incomeSource" column="type"  javaType="incomeSource">
+		     <id column="id" property="id"/>
+		     <result column="name" property="name"/>
+		     <result column="status" property="status"/>  
+		</association>
+	</resultMap>
+
+	<!--表名 -->
+	<sql id="tableName">
+		income_data
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		icmnumber,icmdate,source,msg
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+	    #{icmnumber},#{icmdate},#{source},#{msg}
+	</sql>
+
+	<!-- 获得消费列表数据 -->
+	<select id="getIncomeDataList"  resultMap="incomeMap">
+		select * from income_data d
+		left join income_source s on d.source = s.id
+		order by d.icmdate desc
+	</select>
+	<select id="getIncomeDataById"  parameterType="int" resultType="income">
+		select * from income_data where id=#{id}
+	</select>
+	<delete id="deleteIncomeData" parameterType="int">
+		delete from income_data where id=#{id}
+	</delete>
+	<!-- 更新消费数据 -->
+	<update id="updateIncomeData" parameterType="consumer" >
+		update 
+		income_data
+		set 
+			icmnumber=#{icmnumber},
+			icmdate =#{icmdate},
+			source=#{source},
+			msg=#{msg}
+		where 
+			id= #{id}
+	</update>
+	
+	<!-- 新增消费记录 -->
+	<insert id="insertIncomeData"  parameterType="income" >
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+       </selectKey>
+		insert into <include refid="tableName"></include> (
+			<include refid="Field"></include>
+		) values (
+			<include refid="FieldValue"></include>
+		)
+	</insert>	
+	
+
+</mapper>

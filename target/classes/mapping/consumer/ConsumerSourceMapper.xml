@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.consumer.ConsumerSourceMapper">
+
+	<resultMap type="consumerSource"  id="sourceMap">
+		<id column="source_id" property="source_id"/>
+		<result column="source_name" property="source_name"/>
+		<result column="source_status"  property="source_status"/>
+	</resultMap>
+
+
+	<select id="getCsmSourceDataList"  resultMap="sourceMap">
+		select  
+		id as source_id,
+		name as source_name,
+		status as source_status
+		from 
+		consumer_source 
+	</select>
+	
+	
+</mapper>

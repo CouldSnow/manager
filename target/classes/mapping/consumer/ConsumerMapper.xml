@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.consumer.ConsumerMapper">
+
+	<resultMap type="consumer" id="consumerMap">
+		<id column="id" property="id"/>
+		<result column="csmnumber" property="csmnumber"/>
+		<result column="csmDate"  property="csmDate"/>
+		<result column="msg" property="msg"/>
+		<result column="label" property="label"/>
+		<result column="type" property="type"/>
+		<result column="source" property="source"/>
+		<association property="consumerType" column="type"  javaType="consumerType"  select="selectCsmTypeDataList"></association>
+		<association property="consumerSource" column="source"  javaType="consumerSource"  select="selectCsmSourceDataList"></association>
+	</resultMap>
+	<!-- 消费方式Map -->
+	<resultMap type="consumerSource"  id="sourceMap">
+		<id column="source_id" property="source_id"/>
+		<result column="source_name" property="source_name"/>
+		<result column="source_status"  property="source_status"/>
+	</resultMap>
+	<!-- 消费类型Map -->
+	<resultMap type="consumerType"  id="csmTypeMap">
+		<id column="type_id" property="type_id"/>
+		<result column="type_name" property="type_name"/>
+		<result column="type_status"  property="type_status"/>
+	</resultMap>
+	
+	<!--表名 -->
+	<sql id="tableName">
+		consumer_data
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		csmnumber,csmDate,type,source,msg,label
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+	    #{csmnumber},#{csmDate},#{type},#{source},#{msg},#{label}
+	</sql>
+	
+	<!-- 获得消费列表数据 -->
+	<select id="getConsumerDataList"  resultMap="consumerMap">
+		select * from consumer_data order by csmDate desc
+	</select>
+	<select id="getConsumerDateById"  parameterType="int" resultType="consumer">
+		select * from consumer_data where id=#{id} 
+	</select>
+	<delete id="deleteConsumerData" parameterType="int">
+		delete from consumer_data where id=#{id}
+	</delete>
+	<!-- 更新消费数据 -->
+	<update id="updateConsumerDate" parameterType="consumer" >
+		update 
+		<include refid="tableName"></include> 
+		set 
+			csmnumber=#{csmnumber},
+			csmDate =#{csmDate},
+			type=#{type},
+			source=#{source},
+			msg=#{msg},
+			label=#{label}
+		where 
+			id= #{id}
+	</update>
+	
+	<!-- 新增消费记录 -->
+	<insert id="insertConsumerData"  parameterType="consumer" >
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+       </selectKey>
+		insert into <include refid="tableName"></include> (
+			<include refid="Field"></include>
+		) values (
+			<include refid="FieldValue"></include>
+		)
+	</insert>	
+	
+	<select id="selectCsmTypeDataList"  resultMap="csmTypeMap">
+		select  
+		id as type_id,
+		name as type_name,
+		status as type_status
+		from 
+		consumer_type
+		where id=#{type}
+	</select>
+	
+	<select id="selectCsmSourceDataList"  resultMap="sourceMap">
+		select  
+		id as source_id,
+		name as source_name,
+		status as source_status
+		from 
+		consumer_source 
+		where id=#{source}
+	</select>
+	
+	<!-- 每月统计 -->
+	<select id="getMonthTotal" resultType="monthsTotal">
+		select date_format(csmDate,"%Y-%m") months,sum(csmnumber) count from consumer_data group by months
+	<!-- 	select date_format(csmDate,"%u") months,sum(csmnumber) count from consumer_data group by months 每周-->
+	</select>
+	<!-- 每周消费类型统计 -->
+	<select id="getWeekType" resultType="weekType">
+		select sum(csmnumber) count ,type,t.name from consumer_data d
+		left join consumer_type t on d.type=t.id
+		where year(csmDate)=year(CURDATE()) and MONTH(csmDate)=MONTH(CURDATE()) group BY type,t.name
+	</select>
+	<!-- 每周消费方式统计 -->
+	<select id="getWeekSource" resultType="weekSource">
+		select sum(csmnumber) count ,source,t.name from consumer_data d
+		left join consumer_source t on d.source=t.id
+		where year(csmDate)=year(CURDATE()) and MONTH(csmDate)=MONTH(CURDATE()) group BY source,t.name
+	</select>
+</mapper>
