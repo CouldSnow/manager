@@ -100,18 +100,18 @@
 	</select>
 	
 	<!-- 每月统计 -->
-	<select id="getMonthTotal" resultType="monthsTotal">
+	<select id="getMonthTotal" resultType="consumerMap">
 		select date_format(csmDate,"%Y-%m") months,sum(csmnumber) count from consumer_data group by months
 	<!-- 	select date_format(csmDate,"%u") months,sum(csmnumber) count from consumer_data group by months 每周-->
 	</select>
 	<!-- 每周消费类型统计 -->
-	<select id="getWeekType" resultType="weekType">
+	<select id="getWeekType" resultType="consumerMap">
 		select sum(csmnumber) count ,type,t.name from consumer_data d
 		left join consumer_type t on d.type=t.id
 		where year(csmDate)=year(CURDATE()) and MONTH(csmDate)=MONTH(CURDATE()) group BY type,t.name
 	</select>
 	<!-- 每周消费方式统计 -->
-	<select id="getWeekSource" resultType="weekSource">
+	<select id="getWeekSource" resultType="consumerMap">
 		select sum(csmnumber) count ,source,t.name from consumer_data d
 		left join consumer_source t on d.source=t.id
 		where year(csmDate)=year(CURDATE()) and MONTH(csmDate)=MONTH(CURDATE()) group BY source,t.name

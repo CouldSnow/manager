@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.zy.entity.consumer.Consumer;
-import com.zy.entity.consumer.MonthsTotal;
-import com.zy.entity.consumer.WeekSource;
-import com.zy.entity.consumer.WeekType;
+import com.zy.entity.consumer.ConsumerMap;
 
 @Component
 public interface ConsumerMapper {
@@ -40,10 +38,10 @@ public interface ConsumerMapper {
 	
 	 void deleteConsumerData(int id)throws Exception;
 	 
-	 List<MonthsTotal> getMonthTotal()throws Exception;
+	 List<ConsumerMap> getMonthTotal()throws Exception;
 	 
-	 List<WeekType> getWeekType() throws Exception;
+	 List<ConsumerMap> getWeekType() throws Exception;
 	
-	 List<WeekSource> getWeekSource()throws Exception;
+	 List<ConsumerMap> getWeekSource()throws Exception;
 	
 }
