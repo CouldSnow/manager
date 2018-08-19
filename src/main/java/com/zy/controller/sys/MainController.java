@@ -33,4 +33,12 @@ public class MainController {
 	public String toWeekMain() {
 		return "/consumer/consumer_weekanalyse";
 	}
+	/**
+	 * 从main页面跳转到收入周消费页面
+	 * @return
+	 */
+	@RequestMapping("/formBuilder")
+	public String toFormBuilder() {
+		return "/system/tools/formbuilder/formbuilder";
+	}
 }

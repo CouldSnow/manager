@@ -1301,12 +1301,12 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
-  <%-- <li class="desktop_icon" id="win8" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon7.png"/></span>
-    <div class="text">聊天室
+  <li class="desktop_icon" id="win8" path="${path}/main/formBuilder"> <span class="icon"><img src="${path}/static/ui/icon/icon7.png"/></span>
+    <div class="text">表单构建器
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win9" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon8.png"/></span>
+ <%--  <li class="desktop_icon" id="win9" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon8.png"/></span>
     <div class="text">通讯薄
       <div class="right_cron"></div>
     </div>
@@ -1356,8 +1356,8 @@ $(function(){
 </div>
 <div id="lr_bar">
   <ul id="default_app">
-    <li id="app0"><img src="${path}/static/ui/icon/icon1.png" title="Jquery API" path="http://www.198zone.com/"/></li>
-    <li  id="app2"><img src="${path}/static/ui/icon/icon0.png" title="学习资料库" path="http://www.198zone.com/"/></li>
+    <li id="app0"><img src="${path}/static/ui/icon/icon1.png" title="Jquery API" path="http://www.bootcss.com/p/layoutit/"/></li>
+    <li  id="app2"><img src="${path}/static/ui/icon/icon0.png" title="学习资料库" path="http://localhost:8080/FHADMINM/login_toLogin"></li>
     <li id="app3"><img src="${path}/static/ui/icon/icon2.png" title="QQ群" path="http://www.198zone.com/"/></li>
     <li id="app4"> <img src="${path}/static/ui/icon/icon3.png" title="在线留言" path="http://www.198zone.com/"/></li>
     <li id="app1"><img src="${path}/static/ui/icon/icon11.png" title="代码笔记" path="http://www.198zone.com/"/></li>
