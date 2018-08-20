@@ -16,12 +16,23 @@
 <script src="${path}/plugins/hightcharts/highcharts.js"></script>
 <script src="${path}/plugins/hightcharts/modules/exporting.js"></script>
 <script src="${path}/plugins/hightcharts/modules/export-data.js"></script>
+
+<script src="${path}/static/bootstrap/js/bootstrap.min.js"></script>
+<link href="${path}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="${path}/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script src="${path}/plugins/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script src="${path}/plugins/datetimepicker/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<link href="${path}/plugins/toastr/toastr.css" rel="stylesheet" />
+ <script src="${path}/plugins/toastr/toastr.js"></script>
+ <link href="${path}/plugins/sweetalert/dist/sweetalert2.css" rel="stylesheet" />
+ <script src="${path}/plugins/sweetalert/dist/sweetalert2.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<div style="hight:100%;width:100%">
+<div class="container">
 <div id="container" style="min-width:50%; height: 100%; max-width: 50%; margin: 0 auto ;float:left" ></div>
 <div id="container1" style="min-width:50%; height: 100%; max-width: 50%; margin: 0 auto ;float:left"></div>
+
 </div>
 </body>
 <script type="text/javascript">

@@ -10,8 +10,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>消费管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="${path}/static/js/jquery-3.2.1.min.js"></script>
 <script src="${path}/static/bootstrap/js/bootstrap.min.js"></script>
 <link href="${path}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -201,8 +201,6 @@
 			</div>
 		</div>
 		
-		
-		
 	 </div>
 
 	<script type="text/javascript">
@@ -342,6 +340,8 @@
 							var option=$('<option></option>').append(item.source_name).attr('value',item.source_id);
 							$('#select2').append(option);
 						});
+						
+						$(".form_datetime").val(getMyDate(new Date()));
 					}
 				}); 
 				
@@ -492,7 +492,8 @@
 				todayHighlight: 1,
 				startView: 2,
 				minView: 2,
-				forceParse: 0
+				forceParse: 0,
+				language:  'zh',
 				});
 	</script>
 </body>

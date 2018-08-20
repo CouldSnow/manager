@@ -51,7 +51,8 @@ html {
 }
 body {
 	font-size: 12px;
-	background:#06C url(${path}/static/ui/wallpapers/timg.jpg) no-repeat scroll center center;
+	 background:#06C url(${path}/static/ui/wallpapers/bg001.jpg) no-repeat scroll center center; 
+	/* background:#06C url(${path}/static/ui/wallpapers/gif006.gif) repeat scroll center center; */
 	font-family: Tahoma, Geneva, sans-serif;
 	margin:0;
 	padding:0
@@ -1286,41 +1287,44 @@ $(function(){
 <body>
 <!-- <a href="#" class="powered_by">Powered by jWebOS</a> -->
 <ul id="deskIcon">
-  <li class="desktop_icon" id="win5" path="${path}/main/consumerMain"> <span class="icon"><img src="${path}/static/ui/icon/icon4.png"/></span>
+  <li class="desktop_icon" id="win5" path="${path}/main/consumerMain"> <span class="icon"><img src="${path}/static/ui/icon/icon004.png"/></span>
     <div class="text">消费管理
       <div class="right_cron"></div>
     </div>
   </li>
- <li class="desktop_icon" id="win6" path="${path}/main/incomeMain"> <span class="icon"><img src="${path}/static/ui/icon/icon5.png"/></span>
+ <%-- <li class="desktop_icon" id="win6" path="${path}/main/incomeMain"> <span class="icon"><img src="${path}/static/ui/icon/icon005.png"/></span>
     <div class="text">收入管理
       <div class="right_cron"></div>
     </div>
-  </li>
-   <li class="desktop_icon" id="win7" path="${path}/main/weekMain"> <span class="icon"><img src="${path}/static/ui/icon/icon6.png"/></span>
-    <div class="text">本周消费统计
+  </li> --%>
+  <li class="desktop_icon" id="win9" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon002.png"/></span>
+    <div class="text">月消费统计
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win8" path="${path}/main/formBuilder"> <span class="icon"><img src="${path}/static/ui/icon/icon7.png"/></span>
-    <div class="text">表单构建器
+   <li class="desktop_icon" id="win7" path="${path}/main/weekMain"> <span class="icon"><img src="${path}/static/ui/icon/icon001.png"/></span>
+    <div class="text">周消费统计
       <div class="right_cron"></div>
     </div>
   </li>
- <%--  <li class="desktop_icon" id="win9" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon8.png"/></span>
-    <div class="text">通讯薄
+  <li class="desktop_icon" id="win8" path="${path}/main/formBuilder"> <span class="icon"><img src="${path}/static/ui/icon/form.png"/></span>
+    <div class="text">工具Demo
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win10" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon9.png"/></span>
-    <div class="text">日记
+   <li class="desktop_icon" id="win10" path="${path}/main/interfaceTest"> <span class="icon"><img src="${path}/static/ui/icon/interface1.png"/></span>
+    <div class="text">接口测试器
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win11" path="http://www.greatidc.com"> <span class="icon"><img src="${path}/static/ui/icon/icon10.png"/></span>
-    <div class="text">文档资料
+  <li class="desktop_icon" id="win11" path="${path}/main/upload"> <span class="icon"><img src="${path}/static/ui/icon/file.png"/></span>
+    <div class="text">资源上传
       <div class="right_cron"></div>
     </div>
   </li>
+ <%--  
+ 
+  
   <li class="desktop_icon" id="win12" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon6.png"/></span>
     <div class="text">日历
       <div class="right_cron"></div>
@@ -1356,8 +1360,8 @@ $(function(){
 </div>
 <div id="lr_bar">
   <ul id="default_app">
-    <li id="app0"><img src="${path}/static/ui/icon/icon1.png" title="Jquery API" path="http://www.bootcss.com/p/layoutit/"/></li>
-    <li  id="app2"><img src="${path}/static/ui/icon/icon0.png" title="学习资料库" path="http://localhost:8080/FHADMINM/login_toLogin"></li>
+    <li id="app0"><img src="${path}/static/ui/icon/bootstrap.png" title="bootstrap 可视化编辑" path="http://www.bootcss.com/p/layoutit/"/></li>
+    <li  id="app2"><img src="${path}/static/ui/icon/rounder_10.png" title="学习资料库" path="http://localhost:8080/FHADMINM/login_toLogin"></li>
     <li id="app3"><img src="${path}/static/ui/icon/icon2.png" title="QQ群" path="http://www.198zone.com/"/></li>
     <li id="app4"> <img src="${path}/static/ui/icon/icon3.png" title="在线留言" path="http://www.198zone.com/"/></li>
     <li id="app1"><img src="${path}/static/ui/icon/icon11.png" title="代码笔记" path="http://www.198zone.com/"/></li>

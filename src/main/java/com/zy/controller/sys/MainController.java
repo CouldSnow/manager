@@ -34,11 +34,29 @@ public class MainController {
 		return "/consumer/consumer_weekanalyse";
 	}
 	/**
-	 * 从main页面跳转到收入周消费页面
+	 * 从main页面跳转到收入页面构建页面
 	 * @return
 	 */
 	@RequestMapping("/formBuilder")
 	public String toFormBuilder() {
 		return "/system/tools/formbuilder/formbuilder";
+	}
+	
+	/**
+	 * 从main页面跳转到接口测试页面
+	 * @return
+	 */
+	@RequestMapping("/interfaceTest")
+	public String toInterfaceTest() {
+		return "/system/tools/interfaceTest/interfaceTest";
+	}
+	
+	/**
+	 * 从main页面跳转到上传页面
+	 * @return
+	 */
+	@RequestMapping("/upload")
+	public String toUpLoad() {
+		return "/system/upload/upload";
 	}
 }
