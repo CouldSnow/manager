@@ -41,9 +41,11 @@ public class ConsumerAnalyseController {
 	public Msg getWeekTotal() throws Exception{
 		List<ConsumerMap> type = consumerService.getWeekType();
 		List<ConsumerMap> source = consumerService.getWeekSource();
+		List<ConsumerMap> days = consumerService.getSevenDays();
 		Msg msg = Msg.success();
 		msg.add("weekType", type);
 		msg.add("weekSource", source);
+		msg.add("daysInfo", days);
 		return msg;
 	}
 	

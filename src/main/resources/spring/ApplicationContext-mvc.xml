@@ -47,7 +47,7 @@
 	<!-- <bean id="exceptionResolver" class="com.zy.resolver.MyExceptionResolver"></bean> -->
 	
 	<!-- 上传拦截，如最大上传值及最小上传值 -->
-<!-- 	  <bean id="multipartResolver"   class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >   
+	  <bean id="multipartResolver"   class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >   
 		  <property name="maxUploadSize">    
 	          <value>104857600</value>    
 	       </property>   
@@ -57,7 +57,7 @@
 	         <property name="defaultEncoding">    
 	            <value>utf-8</value>    
 	        </property> 
-    </bean>   -->
+     </bean>  
 	
 	<!-- 返回json 方法一 需要导入 fastjson.jar包  features 一定要加 不然数据会丢失-->  
    <mvc:annotation-driven>

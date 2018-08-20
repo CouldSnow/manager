@@ -71,5 +71,13 @@ public class ConsumerService {
 	public List<ConsumerMap> getWeekSource() throws Exception{
 		// TODO Auto-generated method stub
 		return consumerMapper.getWeekSource();
+	}
+	/**
+	 * 七天消费情况
+	 * @return
+	 */
+	public List<ConsumerMap> getSevenDays() throws Exception{
+		
+		return consumerMapper.getSevenDays();
 	};
 }

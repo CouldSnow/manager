@@ -44,4 +44,6 @@ public interface ConsumerMapper {
 	
 	 List<ConsumerMap> getWeekSource()throws Exception;
 	
+	 List<ConsumerMap> getSevenDays()throws Exception;
+	
 }

@@ -30,9 +30,9 @@
 </head>
 <body>
 <div class="container">
-<div id="container" style="min-width:50%; height: 100%; max-width: 50%; margin: 0 auto ;float:left" ></div>
-<div id="container1" style="min-width:50%; height: 100%; max-width: 50%; margin: 0 auto ;float:left"></div>
-
+<div id="container" style="min-width:50%; height: 50%; max-width: 50%; margin: 0 auto ;float:left" ></div>
+<div id="container1" style="min-width:50%; height: 50%; max-width: 50%; margin: 0 auto ;float:left"></div>
+<div id="container2" style="min-width:400px;height:400px"></div>
 </div>
 </body>
 <script type="text/javascript">
@@ -44,9 +44,11 @@
 		success:function(data){
 			var type=JSON.parse(data).extend.weekType;
 			var source=JSON.parse(data).extend.weekSource;
+			var day = JSON.parse(data).extend.daysInfo;
 			
 			build_pie(type,'container','本周消费类型百分比');
 			build_pie(source,'container1','本周消费方式百分比');
+			build_line(day,'container2','最近七天消费合计');
 		}
 	})
 	
@@ -99,6 +101,75 @@
 		        data: piedata
 		    }]
 		});
+	}
+	
+	function build_line(data,ele,text){
+		var day=[];
+		var value=[];
+		$.each(data,function(index,item){
+			day.push(getMyDate(item.csmDate));
+			value.push(item.sum);
+		})
+		
+		var chart = Highcharts.chart(ele, {
+		    chart: {
+		        type: 'line'
+		    },
+		    title: {
+		        text: text
+		    },
+		    credits: 
+		       {
+		          enabled: false
+		       },
+		       exporting: { 
+		    	   enabled: false
+		       },
+		    xAxis: {
+		        categories:day
+		    },
+		    yAxis: {
+		        title: {
+		            text: '元/单位'
+		        }
+		    },
+		    plotOptions: {
+		        line: {
+		            dataLabels: {
+		                // 开启数据标签
+		                enabled: true          
+		            },
+		            // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+		            enableMouseTracking: true
+		        }
+		    },
+		    series: [{
+		        name: '日消费合计',
+		        data: value
+		    }]
+		});
+
+	}
+	
+	
+	//转时间戳
+	function getMyDate(str){  
+	    var oDate = new Date(str),  
+	    oYear = oDate.getFullYear(),  
+	    oMonth = oDate.getMonth()+1,  
+	    oDay = oDate.getDate(),  
+	    oHour = oDate.getHours(),  
+	    oMin = oDate.getMinutes(),  
+	    oSen = oDate.getSeconds(),  
+	    oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay);//最后拼接时间  
+	    return oTime;  
+	}; 
+	//补0操作
+	function getzf(num){  
+	    if(parseInt(num) < 10){  
+	        num = '0'+num;  
+	    }  
+	    return num;  
 	}
 </script>
 </html>

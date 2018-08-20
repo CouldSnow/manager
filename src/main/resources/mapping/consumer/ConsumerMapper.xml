@@ -116,4 +116,10 @@
 		left join consumer_source t on d.source=t.id
 		where week(csmDate)=week(CURDATE()) and MONTH(csmDate)=MONTH(CURDATE()) group BY source,t.name
 	</select>
+	<!-- 七天内 消费情况-->
+	<select id="getSevenDays" resultType="consumerMap">   
+		select sum(csmnumber) sum,csmDate from consumer_data 
+		where csmDate &lt;= DATE(CURDATE()) and csmDate &gt;= DATE_SUB(CURDATE(),INTERVAL 6 DAY) 
+		GROUP BY csmDate
+	</select>
 </mapper>
