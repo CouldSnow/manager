@@ -38,7 +38,7 @@ public interface ConsumerMapper {
 	
 	 void deleteConsumerData(int id)throws Exception;
 	 
-	 List<ConsumerMap> getMonthTotal()throws Exception;
+	 List<ConsumerMap> getMonthTotal(ConsumerMap consumerMap)throws Exception;
 	 
 	 List<ConsumerMap> getWeekType() throws Exception;
 	

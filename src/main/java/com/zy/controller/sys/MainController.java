@@ -34,6 +34,14 @@ public class MainController {
 		return "/consumer/consumer_weekanalyse";
 	}
 	/**
+	 * 从main页面跳转到收入周消费页面
+	 * @return
+	 */
+	@RequestMapping("/monthMain")
+	public String toMonthMain() {
+		return "/consumer/consumer_monthanalyse";
+	}
+	/**
 	 * 从main页面跳转到收入页面构建页面
 	 * @return
 	 */

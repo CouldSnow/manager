@@ -57,11 +57,12 @@ public class ConsumerService {
 	}
 	/**
 	 * 每月统计
+	 * @param consumerMap 
 	 * @return
 	 * @throws Exception
 	 */
-	 public List<ConsumerMap> getMonthTotal()throws Exception{
-		 return consumerMapper.getMonthTotal();
+	 public List<ConsumerMap> getMonthTotal(ConsumerMap consumerMap)throws Exception{
+		 return consumerMapper.getMonthTotal(consumerMap);
 	 }
 	 
 	public List<ConsumerMap> getWeekType() throws Exception{

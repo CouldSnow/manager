@@ -100,8 +100,17 @@
 	</select>
 	
 	<!-- 每月统计 -->
-	<select id="getMonthTotal" resultType="consumerMap">
-		select date_format(csmDate,"%Y-%m") months,sum(csmnumber) count from consumer_data group by months
+	<select id="getMonthTotal" resultType="consumerMap" parameterType="consumerMap">
+		select date_format(csmDate,"%Y-%m") months,sum(csmnumber) count from consumer_data 
+		<where>
+			<if test="csmDate1!=null">
+				and date_format(csmDate,"%Y-%m") &gt;=#{csmDate1}
+			</if>
+			<if test="csmDate2 !=null">
+				and date_format(csmDate,"%Y-%m") &lt;=#{csmDate2}
+			</if>
+		</where>
+		group by months
 	<!-- 	select date_format(csmDate,"%u") months,sum(csmnumber) count from consumer_data group by months 每周-->
 	</select>
 	<!-- 本周消费类型统计 -->

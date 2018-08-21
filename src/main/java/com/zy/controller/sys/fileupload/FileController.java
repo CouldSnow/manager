@@ -17,30 +17,42 @@ public class FileController {
 
 	@RequestMapping("/upload")
 	@ResponseBody
-	public Msg upload( @RequestParam("file")MultipartFile file,@RequestParam("fileName")String fileName) {
+	public Msg upload( @RequestParam("file")MultipartFile file,@RequestParam("fileName")String fileName,@RequestParam("filePath")String filePath) {
 		if(file!=null) {
 			String path=null;
 			String type=null;
 			String ofileName = file.getOriginalFilename();//文件原名
-			type = fileName.indexOf(".")!=-1?fileName.substring(fileName.lastIndexOf(".")+1, fileName.length()):null;
+			type = ofileName.indexOf(".")!=-1?ofileName.substring(ofileName.lastIndexOf(".")+1, ofileName.length()):null;
 			if(type!=null) {
 				if("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())||"PDF".equals(type.toUpperCase())) {
-					String realPath="C:\\Users\\Administrator\\Desktop";
+					String realPath=null;//待定字段，以后为项目文件存放地址，可以通过配置文件维护
 					//String trueFileName=String.valueOf(System.currentTimeMillis())+fileName;
 					String trueFileName=fileName;
-					path = realPath+"\\"+trueFileName;
+					path = filePath+"\\"+trueFileName;
 					try {
-						file.transferTo(new File(path));
+						
+						File dirfile = new File(path);
+						if(dirfile.exists()) {
+							return Msg.fail().add("error", "文件已存在");
+						}
+						
+						File dirFile = new File(filePath);
+						if(!dirFile.exists()) {
+							dirFile.mkdirs();
+						}
+						file.transferTo(dirfile);
 					} catch (Exception e) {
-						return new Msg().fail().add("error", e.getMessage());
+						return Msg.fail().add("error", e.getMessage());
 					}
+				}else {
+					return Msg.fail().add("error", "文件上传格式不对");
 				}
 			}else {
-				return new Msg().fail().add("error", "fail");
+				return Msg.fail().add("error", "fail");
 			}
 		}else {
-			return new Msg().fail().add("error", "file is null");
+			return Msg.fail().add("error", "上传文件为空");
 		}
-		return  new Msg().success();
+		return  Msg.success();
 	}
 }

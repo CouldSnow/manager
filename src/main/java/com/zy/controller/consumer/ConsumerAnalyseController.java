@@ -1,6 +1,8 @@
 package com.zy.controller.consumer;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zy.entity.consumer.ConsumerMap;
@@ -24,10 +26,10 @@ public class ConsumerAnalyseController {
      * @return
      * @throws Exception
      */
-	@RequestMapping("/anaylseMonthInfo")
+	@RequestMapping(value="/anaylseMonthInfo",method=RequestMethod.POST)
 	@ResponseBody
-	public Msg getMonthsTotal() throws Exception{
-		List<ConsumerMap> list = consumerService.getMonthTotal();
+	public Msg getMonthsTotal(@RequestBody ConsumerMap consumerMap) throws Exception{
+		List<ConsumerMap> list = consumerService.getMonthTotal(consumerMap);
 		return Msg.success().add("monthtotal", list);
 	}
 	

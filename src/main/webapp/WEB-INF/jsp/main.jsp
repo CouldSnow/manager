@@ -1297,7 +1297,7 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li> --%>
-  <li class="desktop_icon" id="win9" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon002.png"/></span>
+  <li class="desktop_icon" id="win9" path="${path}/main/monthMain"> <span class="icon"><img src="${path}/static/ui/icon/icon002.png"/></span>
     <div class="text">月消费统计
       <div class="right_cron"></div>
     </div>

@@ -37,6 +37,10 @@
 		    <label for="exampleInputFileName">文件名</label>
 		    <input type="text"  name="fileName" id="exampleInputFileName">
 		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputFilePath">上传地址</label>
+		    <input type="text"  name="filePath" id="exampleInputFilePath" value="C:\\Users\\Administrator\\Desktop">
+		  </div>
   		<!-- <button type="submit" class="btn btn-default">上传</button> -->
   			<div class="row-fluid">
 		<div class="span12">
@@ -45,7 +49,7 @@
 	</div>
 	</form>
 	
-	带进度条的上传文件
+	<!-- 带进度条的上传文件
 		<form id="file_form_progress" method="post" enctype="multipart/form-data">
 		  <div class="form-group">
 		    <label for="exampleInputFile1">File input</label>
@@ -56,13 +60,14 @@
 		    <label for="exampleInputFileName1">文件名</label>
 		    <input type="text"  name="fileName" id="exampleInputFileName1">
 		  </div>
-  		<!-- <button type="submit" class="btn btn-default">上传</button> -->
+		  
+  		<button type="submit" class="btn btn-default">上传</button>
   			<div class="row-fluid">
 		<div class="span12">
 			 <button onclick="UpladFile()" class="btn btn-success" type="button">按钮</button>
 		</div>
 	</div>
-	</form>
+	</form> -->
 		
 		<div id="progerssbar"class="progress progress-info">
 				<div class="bar">
@@ -71,6 +76,7 @@
 </body>
 <script type="text/javascript">
 	 toastr.options.positionClass = 'toast-top-center';
+	 toastr.options.timeOut=3000;
 	 $('#upload').click(function(){
 		 $.ajax({
 			url:'${path}/file/upload',
@@ -88,7 +94,7 @@
 				if(data.code==100){
 					toastr.success('上传成功');
 				}else{
-					toastr.error('上传失败'+data.extend.error);
+					toastr.error('上传失败：'+data.extend.error);
 				}
 			}
 		 });
