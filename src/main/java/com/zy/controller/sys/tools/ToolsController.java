@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zy.utils.HttpClientUtils;
 import com.zy.utils.Msg;
 
 @Controller
@@ -20,26 +21,13 @@ public class ToolsController {
 	@RequestMapping("interfaceTest")
 	@ResponseBody
 	public Msg interfaceTest(@RequestBody Map<String,String> map) {
-		 Msg success = Msg.success();
-		 Msg fail = Msg.fail();
-		 String result="",rTime="";
-		 try {
-			 long startTime = System.currentTimeMillis(); 	
-			 URL url = new URL( map.get("serverUrl"));
-			 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			
-			 connection.setRequestMethod(map.get("requestMonthed"));
-			 /*connection.setRequestMethod("adasdas");*/
-			 BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
-			 long endTime = System.currentTimeMillis(); 
-			 String line="";
-			 while((line = in.readLine())!=null) {
-				 result += line;
-			 }
-			  rTime = String.valueOf(endTime-startTime);
-		 }catch(Exception e) {
-			 return fail.add("result", e.getMessage());
-		 }
-		 return success.add("result", result).add("rTime", rTime);
+		String url = map.get("serverUrl");
+		String method = map.get("requestMonthed");
+		if(method.equals("GET")) {
+			return HttpClientUtils.doGet(url);
+		}else {
+			String jsonStr = map.get("requestBody");
+			return HttpClientUtils.doPost(url, jsonStr);
+		}
 	}
 }

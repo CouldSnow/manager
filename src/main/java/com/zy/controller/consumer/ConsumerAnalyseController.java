@@ -26,7 +26,7 @@ public class ConsumerAnalyseController {
      * @return
      * @throws Exception
      */
-	@RequestMapping(value="/anaylseMonthInfo",method=RequestMethod.POST)
+	@RequestMapping(value="/anaylseMonthInfo")
 	@ResponseBody
 	public Msg getMonthsTotal(@RequestBody ConsumerMap consumerMap) throws Exception{
 		List<ConsumerMap> list = consumerService.getMonthTotal(consumerMap);

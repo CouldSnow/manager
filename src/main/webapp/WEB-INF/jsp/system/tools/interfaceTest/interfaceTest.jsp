@@ -61,7 +61,10 @@
 											</div>
 										</div>
 										<div class="step-content row-fluid position-relative" style="padding-top: 10px;">
-										<textarea id="json-field" title="返回结果" class="autosize-transition span12" style="height:300px;width:690px;"></textarea>
+											<div>
+													<textarea id="json-field" title="返回结果" class="autosize-transition span12" style="height:300px;width:690px;"></textarea>
+										 			<textarea id="paramer-field" title="post请求参数" class="autosize-transition span12 " style="height:300px;width:200px;"></textarea>
+											</div>
 									 	</div>
 									 	<div class="step-content row-fluid position-relative">
 										<label style="float:left;padding-left: 35px;">服务器响应：<font color="red" id="stime">-</font>&nbsp;毫秒</label>
@@ -105,7 +108,12 @@
 		}
 	   //设置请求类型
 		function setType(type){
-			$('#S_TYPE').val(type);
+		   $('#S_TYPE').val(type);
+			if(type=='POST'){
+				$('#paramer-field').removeClass("hide");
+			}else{
+				$('#paramer-field').addClass("hide");
+			}
 		}
 		//发送请求
 		function sendSever(){
@@ -114,12 +122,12 @@
 				toastr.error('请输入请求地址');
 				return false;
 			}
-			
 			var startTime = new Date().getTime(); //请求开始时间
+			//console.log(JSON.stringify({serverUrl:url.val(),requestMonthed:$('#S_TYPE').val(),requestBody:$('#paramer-field').val()}));
 			$.ajax({
 				type:'post',
 				url:'${path}/tool/interfaceTest',
-				data:JSON.stringify({serverUrl:url.val(),requestMonthed:$('#S_TYPE').val()}),
+				data:JSON.stringify({serverUrl:url.val(),requestMonthed:$('#S_TYPE').val(),requestBody:$('#paramer-field').val()}),
 				contentType:"application/json", //是为了后台能够映射成map类型
 				datatype:'json',
 				cache:false,
@@ -132,12 +140,33 @@
 						$('#ctime').text(endTime-startTime);
 					}else{
 						toastr.error('服务器请求失败');
-						//return 0;
 					}
 					$("#json-field").val(data.extend.result);
+					//$("#json-field").find("pre").text(syntaxHighlight(data.extend.result));
 					$("#stime").text(data.extend.rTime);
 				}
 			});
 		}
+		
+		//格式化json数据
+		function syntaxHighlight(json) {    
+			if (typeof json != 'string') {        
+				json = JSON.stringify(json, undefined, 2);   
+			}    
+			json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');    
+			return  json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {        var cls = 'number';        if (/^"/.test(match)) {           
+				if (/:$/.test(match)) {                
+					cls = 'key';            
+					} else {             
+						cls = 'string';     
+						}      
+				} else if (/true|false/.test(match)) {          
+					cls = 'boolean';       
+					} else if (/null/.test(match)) {        
+						cls = 'null';       
+						}       
+			return '<span class="' + cls + '">' + match + '</span>';   
+			});
+			}
 </script>
 </html>
