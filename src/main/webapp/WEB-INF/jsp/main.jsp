@@ -1322,14 +1322,15 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
- <%--  
- 
-  
-  <li class="desktop_icon" id="win12" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon6.png"/></span>
-    <div class="text">日历
+  <li class="desktop_icon" id="win12" path="${path}/main/websocket"> <span class="icon"><img src="${path}/static/ui/icon/icon6.png"/></span>
+    <div class="text">websocket
       <div class="right_cron"></div>
     </div>
   </li>
+ <%--  
+ 
+  
+  
   <li class="desktop_icon" id="win14" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon7.png"/></span>
     <div class="text">聊天室
       <div class="right_cron"></div>

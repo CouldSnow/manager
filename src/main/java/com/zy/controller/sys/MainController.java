@@ -67,4 +67,12 @@ public class MainController {
 	public String toUpLoad() {
 		return "/system/upload/upload";
 	}
+	/**
+	 * 从main页面跳转到上传页面
+	 * @return
+	 */
+	@RequestMapping("/websocket")
+	public String towebsocket() {
+		return "/system/websocket/websocket";
+	}
 }
