@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <absolute-ordering />
   <display-name>crud</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
@@ -10,7 +11,8 @@
  		<param-name>contextConfigLocation</param-name>
  		<param-value>
  			classpath:spring/ApplicationContext-main.xml,
- 			classpath:spring/ApplicationContext-dataSource.xml
+ 			classpath:spring/ApplicationContext-dataSource.xml,
+ 			classpath:spring/ApplicationContext-websocket.xml
  		</param-value>
  </context-param>
  <listener>
@@ -26,12 +28,15 @@
   			<param-name>contextConfigLocation</param-name>
   			<param-value>classpath:spring/ApplicationContext-mvc.xml</param-value>
   		</init-param>
+  		 <load-on-startup>1</load-on-startup>  
+    	<async-supported>true</async-supported>
   </servlet>
   <!-- 监听所有文件 -->
   <servlet-mapping>
   		<servlet-name>springmvc</servlet-name>
   		<url-pattern>/</url-pattern>
   </servlet-mapping>
+  
   
    <!-- 编码过滤器 -->
   <filter>

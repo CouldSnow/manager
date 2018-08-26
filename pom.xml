@@ -149,12 +149,29 @@
             <artifactId>spring-webmvc</artifactId>  
             <version>4.3.7.RELEASE</version>  
         </dependency> 
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
          <!--4) spring test相关依赖 -->  
         <dependency>  
             <groupId>org.springframework</groupId>  
             <artifactId>spring-test</artifactId>  
             <version>4.3.7.RELEASE</version>  
         </dependency> 
+         <!-- WebSocket -->
+        <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-websocket</artifactId>
+           <version>4.3.7.RELEASE</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-messaging</artifactId>
+           <version>4.3.7.RELEASE</version>
+        </dependency>
   </dependencies>
   <build>
     <finalName>manager</finalName>
