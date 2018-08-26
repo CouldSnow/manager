@@ -51,9 +51,16 @@
 			 <button onclick="print1()" class="btn btn-success" type="button">打印</button>
 		</div>
 	</div>
+	
 	<div class="row-fluid">
 		<div class="span12">
 			 <button id="pool" class="btn btn-success" type="button">数据库连接池</button>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+		<textarea id="propelling_text" rows="4" cols="20"></textarea>
+			 <button onclick="propelling()" class="btn btn-success" type="button">手动推送</button>
 		</div>
 	</div>
 	<!-- 遮罩框 -->
@@ -85,6 +92,9 @@
 </div>
 </body>
 <script type="text/javascript">
+
+toastr.options.positionClass = 'toast-top-right';
+toastr.options.timeOut=3000;
 	$('#btn').click(function(){
 		
 		/* $('#html_modal').find('pre').text($('#text').prop('outerHTML')); */
@@ -113,5 +123,25 @@ $('#btn1').click(function(){
 		self.location.href="${basepath}druid/index.html";
 		/* window.open("${basepath}druid/index.html"); */
 	})
+	
+	function propelling(){
+		var text=$('#propelling_text').val();
+		$.ajax({
+			type:'post',
+			url:'${path}/tool/propelling',
+			data:JSON.stringify({context:text}),
+			contentType:"application/json", //是为了后台能够映射成map类型
+			datatype:'json',
+			cache:false,
+			success:function(datas){
+				var data = JSON.parse(datas);
+				if(data.code==100){
+					//toastr.success('推送成功');
+				}else{
+					//toastr.error('推送失败');
+				}
+			}
+		});
+	}
 </script>
 </html>

@@ -1,6 +1,7 @@
 package com.zy.controller.sys;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,9 @@ public class LoginController {
 	private ConsumerTypeService consumerTypeService;
 	
 	@RequestMapping(value="login_login")
-	public String index() {
+	public String index(Model model) {
+		String jspCode = UUID.randomUUID().toString().replaceAll("-", "");
+		model.addAttribute("jspCode", jspCode);
 		return "main";
 	}
 

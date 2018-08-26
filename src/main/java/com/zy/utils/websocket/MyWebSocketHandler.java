@@ -1,8 +1,11 @@
 package com.zy.utils.websocket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import org.omg.CORBA.ARG_OUT;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHandler;
@@ -10,11 +13,15 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.xml.internal.stream.Entity;
+import com.zy.utils.Msg;
 
 public class MyWebSocketHandler implements WebSocketHandler{
 	
 	//保存所有的user
 	private static final ArrayList<WebSocketSession> users = new ArrayList<WebSocketSession>();
+	
+	private static final Map<String, WebSocketSession> usersmap = new HashMap<String, WebSocketSession>();
 
 	public void afterConnectionClosed(WebSocketSession arg0, CloseStatus arg1) throws Exception {
 		
@@ -22,9 +29,15 @@ public class MyWebSocketHandler implements WebSocketHandler{
 		 users.remove(arg0);
 	}
 
-	public void afterConnectionEstablished(WebSocketSession arg0) throws Exception {
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println("connection success...........");
-		users.add(arg0);
+		for(Entry< String, Object> entry:session.getAttributes().entrySet()) {
+			System.out.println(entry.getKey()+":"+(String)entry.getValue());
+		}
+		String sessionId = (String)session.getAttributes().get("jspCode");
+		usersmap.put(sessionId, session);
+		
+		users.add(session);
 		
 	}
 
@@ -34,7 +47,7 @@ public class MyWebSocketHandler implements WebSocketHandler{
 		
 		System.out.println((String)map.get("msgContent"));
 		// 处理消息 msgContent消息内容
-        TextMessage textMessage = new TextMessage((String)map.get("msgContent"), true);
+        TextMessage textMessage = new TextMessage((String)map.get("msgContent")+":"+users.size(), true);
         // 调用方法（发送消息给所有人）
         sendMsgToAllUsers(textMessage);
 		
@@ -58,4 +71,11 @@ public class MyWebSocketHandler implements WebSocketHandler{
         }
 
     }
+    //推送给所有用户
+   public static void  sendMsgToJsp(String message)throws Exception {
+	   TextMessage textMessage = new TextMessage(message+":"+users.size(), true);
+	   for (WebSocketSession user : users) {
+           user.sendMessage(textMessage);
+       }
+   }
 }

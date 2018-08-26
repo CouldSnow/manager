@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zy.utils.HttpClientUtils;
 import com.zy.utils.Msg;
+import com.zy.utils.websocket.MyWebSocketHandler;
 
 @Controller
 @RequestMapping("tool")
@@ -29,5 +30,17 @@ public class ToolsController {
 			String jsonStr = map.get("requestBody");
 			return HttpClientUtils.doPost(url, jsonStr);
 		}
+	}
+	
+	@RequestMapping("propelling")
+	@ResponseBody
+	public Msg propelling(@RequestBody Map<String,String> map) {
+		String text = map.get("context");
+		try {
+			MyWebSocketHandler.sendMsgToJsp(text);
+		} catch (Exception e) {
+			return Msg.fail().add("error", e.getMessage());
+		}
+		return Msg.success();
 	}
 }

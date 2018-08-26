@@ -1,11 +1,19 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% String path = request.getContextPath();
+String websocketPath =request.getServerName() + ":" + request.getServerPort()
++ path + "/";
+pageContext.setAttribute("websocketPath", websocketPath);
 		pageContext.setAttribute("path", path);
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="${path}/static/js/jquery-3.2.1.min.js"></script>
+<script src="${path}/static/bootstrap/js/bootstrap.min.js"></script>
+<link href="${path}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="${path}/plugins/toastr/toastr.css" rel="stylesheet" />
+ <script src="${path}/plugins/toastr/toastr.js"></script>
 <title>Manager</title>
 <style type="text/css">
 <!--
@@ -110,6 +118,14 @@ a:active {
 	right:0;
 	bottom:0;
 }
+#topBar {
+	width:100%;
+	height:40px;
+	line-height:40px;
+	position:absolute;
+	right:0;
+	top:0;
+}
 #leftBtn {
 	width:100px;
 	height:40px;
@@ -148,14 +164,14 @@ a:active {
 	overflow:hidden;
 	position:relative;
 }
-#task_lb {
+#task_lb ,#task_lb1 {
 	width:auto;
 	height:auto;
 	position:absolute;
 	top:0;
 	right:0;
 }
-#task_lb a {
+#task_lb a,#task_lb1 a {
 	display:inline-block;
 	outline:none;
 	width:100px;
@@ -1167,7 +1183,7 @@ myLib.desktop.deskIcon={
 			,$icon=myData.panel.deskIcon['icon'];
 			
 		 //设置桌面图标容器元素区域大小
-		 $deskIconBlock.css({"width":(winWh['w']-75)+"px","height":(winWh['h']-75)+"px","margin-top":"10px",'margin-left':'75px'});
+		 $deskIconBlock.css({"width":(winWh['w']-75)+"px","height":(winWh['h']-75)+"px","margin-top":"10px",'margin-left':'10px'});
 		 //对图标定位
 		 var iconNum=$icon.size();
 		 //存储当前总共有多少桌面图标
@@ -1286,6 +1302,19 @@ $(function(){
 </head>
 <body>
 <!-- <a href="#" class="powered_by">Powered by jWebOS</a> -->
+<div id="topBar">
+  <div id="task_lb_wrap">
+    <div id="task_lb1">
+    	<!-- <div class="tqyb_nr">
+    		<iframe  style="padding-top: 20px;padding-left: 20px" scrolling="no" height="54" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe>
+		</div> -->
+		<!-- <marquee style="font-weight:1000;font-size:16px;color:rgb(75,159,246)">
+			当你的才华撑不起你的野心时，那你就静下心来学习
+		</marquee> -->
+    </div>
+  </div>
+</div>
+
 <ul id="deskIcon">
   <li class="desktop_icon" id="win5" path="${path}/main/consumerMain"> <span class="icon"><img src="${path}/static/ui/icon/icon004.png"/></span>
     <div class="text">消费管理
@@ -1327,6 +1356,11 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
+  <li class="desktop_icon" id="win12" path="http://www.bootcss.com/p/layoutit/"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap.png"/></span>
+    <div class="text">bootstrap
+      <div class="right_cron"></div>
+    </div>
+  </li>
  <%--  
  
   
@@ -1356,10 +1390,11 @@ $(function(){
   <div id="leftBtn"><a href="#" class="upBtn"></a></div>
   <div id="rightBtn"><a href="#" class="downBtn"></a> </div>
   <div id="task_lb_wrap">
-    <div id="task_lb"></div>
+    <div id="task_lb">
+    </div>
   </div>
 </div>
-<div id="lr_bar">
+<%-- <div id="lr_bar">
   <ul id="default_app">
     <li id="app0"><img src="${path}/static/ui/icon/bootstrap.png" title="bootstrap 可视化编辑" path="http://www.bootcss.com/p/layoutit/"/></li>
     <li  id="app2"><img src="${path}/static/ui/icon/rounder_10.png" title="学习资料库" path="http://localhost:8080/FHADMINM/login_toLogin"></li>
@@ -1381,11 +1416,55 @@ $(function(){
       </ul>
     </div>
   </div>
-</div>
+</div> --%>
 </div>
 <!-- <div style="text-align:center;clear:both">
 <p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
 <p>来源：<a href="http://www.198zone.com/" target="_blank">代码笔记</a></p>
 </div> -->
 </body>
+<script type="text/javascript">
+	toastr.options.positionClass = 'toast-top-right';
+	 toastr.options.timeOut=3000;
+
+	
+	 
+	$(function() {
+	    var websocket;
+	    // 首先判断是否 支持 WebSocket
+	    if('WebSocket' in window) {
+	        websocket = new WebSocket("ws://${websocketPath}websocket?jspCode=${jspCode}");
+	     /*    window.top['_CACHE']=new Object;
+	   	    window.top['_CACHE']["websocket"]=websocket; */
+	    } else if('MozWebSocket' in window) {
+	        websocket = new MozWebSocket("ws://${websocketPath}websocket");
+	    } else {
+	        websocket = new SockJS("http://${websocketPath}sockjs/websocket");
+	    }
+
+	    // 打开时
+	    websocket.onopen = function(evnt) {
+	    	var msg = {
+		            msgContent: "${jspCode}上线了",
+		            postsId: 1
+		        };
+	    	websocket.send(JSON.stringify(msg));
+	    	console.log("  websocket.onopen  ");
+	    };
+	    
+	    // 处理消息时
+	    websocket.onmessage = function(evnt) {
+	       toastr.success(evnt.data)
+	    };
+
+	    websocket.onerror = function(evnt) {
+	        console.log("  websocket.onerror  ");
+	    };
+
+	    websocket.onclose = function(evnt) {
+	        console.log("  websocket.onclose  ");
+	    };
+
+	});
+</script>
 </html>

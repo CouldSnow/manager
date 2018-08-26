@@ -4,8 +4,11 @@ import java.util.Map;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.http.server.ServletServerHttpRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
+import org.springframework.web.socket.sockjs.frame.Jackson2SockJsMessageCodec;
 
 public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 
@@ -20,10 +23,17 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	}
 
 	@Override
-	public boolean beforeHandshake(ServerHttpRequest arg0, ServerHttpResponse arg1, WebSocketHandler arg2,
+	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse arg1, WebSocketHandler arg2,
 			Map<String, Object> attributes) throws Exception {
+		
+		String jspCode = ((ServletServerHttpRequest) request).getServletRequest().getParameter("jspCode");
+		if(jspCode!=null) {
+			attributes.put("jspCode",jspCode);
+		}else {
+			attributes.put("jspCode", "chat");
+		}
 		// TODO Auto-generated method stub
-		return super.beforeHandshake(arg0, arg1, arg2, attributes);
+		return super.beforeHandshake(request, arg1, arg2, attributes);
 	}
 
 }

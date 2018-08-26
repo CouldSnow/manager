@@ -48,13 +48,15 @@
 </body>
 
 	<script type="text/javascript">
+	
+	
 	$(function() {
+         //获取全局的变量
+	    //var websocket = window.top['_CACHE']["websocket"];
 
-	    var websocket;
-
-
+          var websoket;
 	    // 首先判断是否 支持 WebSocket
-	    if('WebSocket' in window) {
+ 	    if('WebSocket' in window) {
 	        websocket = new WebSocket("ws://${websocketPath}websocket");
 	    } else if('MozWebSocket' in window) {
 	        websocket = new MozWebSocket("ws://${websocketPath}websocket");
@@ -64,6 +66,7 @@
 
 	    // 打开时
 	    websocket.onopen = function(evnt) {
+	    	
 	        console.log("  websocket.onopen  ");
 	    };
 
@@ -90,6 +93,7 @@
 	        // 获取消息内容
 	        var text = $("#tx").val();
 
+	        $('#tx').val('')
 	        // 判断
 	        if(text == null || text == ""){
 	            alert(" content  can not empty!!");
@@ -103,7 +107,8 @@
 
 	        // 发送消息
 	        websocket.send(JSON.stringify(msg));
-
+             
+	        
 	    });
 
 
