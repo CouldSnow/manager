@@ -12,7 +12,8 @@
  		<param-value>
  			classpath:spring/ApplicationContext-main.xml,
  			classpath:spring/ApplicationContext-dataSource.xml,
- 			classpath:spring/ApplicationContext-websocket.xml
+ 			classpath:spring/ApplicationContext-websocket.xml,
+ 			classpath:spring/ApplicationContext-shiro.xml
  		</param-value>
  </context-param>
  <listener>
@@ -56,6 +57,24 @@
    <url-pattern>/*</url-pattern>
     </filter-mapping>
     
+    <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->  
+	<!-- 这里filter-name必须对应applicationContext-shrio.xml中定义的<bean id="shiroFilter"/> -->  
+	<!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->  
+	<!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->  
+	<filter>  
+	    <filter-name>shiroFilter</filter-name>  
+	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
+	    <init-param>  
+	   <!--  该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理   -->
+	    <param-name>targetFilterLifecycle</param-name>  
+	    <param-value>true</param-value>  
+	    </init-param>  
+	</filter>  
+	<filter-mapping>  
+	        <filter-name>shiroFilter</filter-name>  
+	        <url-pattern>/*</url-pattern>  
+	</filter-mapping>
+    
     <!-- rest风格的URI，将页面普通的post请求转化为制定的delete put 请求 -->
     <filter>
     	<filter-name>HiddenHttpMethodFilter</filter-name>
@@ -89,21 +108,5 @@
 	</servlet-mapping>
 	<!-- 连接池 启用Web监控统计功能   end-->
 	
-	<!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->  
-	<!-- 这里filter-name必须对应applicationContext-shrio.xml中定义的<bean id="shiroFilter"/> -->  
-	<!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->  
-	<!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->  
-	<!-- <filter>  
-	    <filter-name>shiroFilter</filter-name>  
-	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
-	    <init-param>  
-	    该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理  
-	    <param-name>targetFilterLifecycle</param-name>  
-	    <param-value>true</param-value>  
-	    </init-param>  
-	</filter>  
-	<filter-mapping>  
-	        <filter-name>shiroFilter</filter-name>  
-	        <url-pattern>/*</url-pattern>  
-	</filter-mapping> -->
+	
 </web-app>
