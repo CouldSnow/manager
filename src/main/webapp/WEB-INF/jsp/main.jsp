@@ -59,7 +59,7 @@ html {
 }
 body {
 	font-size: 12px;
-	 background:#06C url(${path}/static/ui/wallpapers/bg001.jpg) no-repeat scroll center center; 
+	 background:#06C url(${path}/static/image/wallpapers/free-backgrounds-23.jpg) no-repeat scroll center center; 
 	/* background:#06C url(${path}/static/ui/wallpapers/gif006.gif) repeat scroll center center; */
 	font-family: Tahoma, Geneva, sans-serif;
 	margin:0;

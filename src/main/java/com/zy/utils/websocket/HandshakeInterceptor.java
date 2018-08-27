@@ -26,7 +26,7 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse arg1, WebSocketHandler arg2,
 			Map<String, Object> attributes) throws Exception {
 		
-		String jspCode = ((ServletServerHttpRequest) request).getServletRequest().getParameter("jspCode");
+		String jspCode = ((ServletServerHttpRequest) request).getServletRequest().getParameter("jspCode");//这里放到session域中，一个session对应多个请求，一个请求可以获取它的session
 		if(jspCode!=null) {
 			attributes.put("jspCode",jspCode);
 		}else {
