@@ -2,6 +2,8 @@ package com.zy.utils.websocket;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -9,6 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 import org.springframework.web.socket.sockjs.frame.Jackson2SockJsMessageCodec;
+
+import com.zy.entity.sys.User;
 
 public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 
@@ -25,13 +29,15 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse arg1, WebSocketHandler arg2,
 			Map<String, Object> attributes) throws Exception {
-		
-		String jspCode = ((ServletServerHttpRequest) request).getServletRequest().getParameter("jspCode");
-		if(jspCode!=null) {
-			attributes.put("jspCode",jspCode);
+	/*	HttpSession session = ((ServletServerHttpRequest) request).getServletRequest().getSession();
+		User user = (User)session.getAttribute("user");
+		String userCode = user.getUsername();
+		if(userCode!=null) {
+			attributes.put("userCode",userCode);
 		}else {
-			attributes.put("jspCode", "chat");
-		}
+			attributes.put("userCode", "anon");
+		}*/
+		
 		// TODO Auto-generated method stub
 		return super.beforeHandshake(request, arg1, arg2, attributes);
 	}

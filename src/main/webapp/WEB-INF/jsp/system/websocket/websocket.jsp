@@ -102,7 +102,7 @@
 
 	        var msg = {
 	            msgContent: text,
-	            postsId: 1
+	            username: "${user.username}"
 	        };
 
 	        // 发送消息

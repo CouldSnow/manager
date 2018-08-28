@@ -1,7 +1,10 @@
 package com.zy.controller.sys;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.zy.utils.websocket.MyWebSocketHandler;
 
 @Controller
 @RequestMapping("main")
@@ -46,7 +49,8 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/formBuilder")
-	public String toFormBuilder() {
+	public String toFormBuilder(Model model) {
+		model.addAttribute("onlineUsers", MyWebSocketHandler.onlineUsers());
 		return "/system/tools/formbuilder/formbuilder";
 	}
 	

@@ -42,46 +42,22 @@ public class LoginController {
 	private ConsumerTypeService consumerTypeService;
 	
 	@RequestMapping(value="login_login")
-	public String index(Model model) {
-		String jspCode = UUID.randomUUID().toString().replaceAll("-", "");
-		model.addAttribute("jspCode", jspCode);
+	public String index() {
 		return "login";
 	}
 
 	@RequestMapping("login")
-	public String login(String username,String password,HttpServletRequest request,Model model) throws Exception {
-		/*//如果 登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
-		String exceptionClassName = request.getParameter("shiroLoginFailure");
-		//根据shiro返回的异常类路径判断
-		if(exceptionClassName!=null) {
-			if(UnknownAccountException.class.getName().equals(exceptionClassName)) {
-				throw new Exception();
-			}else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
-				throw new Exception();
-			}else {
-				throw new Exception();
-			}
-		}*/
-		
+	public String login(User user,HttpServletRequest request,Model model) throws Exception {
+
 		String msg ;
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        token.setRememberMe(true);
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        //token.setRememberMe(true);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
             if (subject.isAuthenticated()) {
-            	User user = new User();
-            	user.setUsername(username);
-            	user.setPassword(password);
                 request.getSession().setAttribute("user",user);
-                SavedRequest savedRequest = WebUtils.getSavedRequest(request);
-                // 获取保存的URL
-                if (savedRequest == null || savedRequest.getRequestUrl() == null) {
-                    return "admin/home";
-                } else {
-                    //String url = savedRequest.getRequestUrl().substring(12, savedRequest.getRequestUrl().length());
-                    return "forward:" + savedRequest.getRequestUrl();
-                }
+                return "main";
             } else {
                 return "login";
             }

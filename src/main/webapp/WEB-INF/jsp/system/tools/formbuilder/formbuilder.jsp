@@ -59,6 +59,7 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
+		<label>当前在线人数：${onlineUsers }</label>
 		<textarea id="propelling_text" rows="4" cols="20"></textarea>
 			 <button onclick="propelling()" class="btn btn-success" type="button">手动推送</button>
 		</div>

@@ -1433,7 +1433,7 @@ $(function(){
 	    var websocket;
 	    // 首先判断是否 支持 WebSocket
 	    if('WebSocket' in window) {
-	        websocket = new WebSocket("ws://${websocketPath}websocket?jspCode=${jspCode}");
+	        websocket = new WebSocket("ws://${websocketPath}websocket");
 	     /*    window.top['_CACHE']=new Object;
 	   	    window.top['_CACHE']["websocket"]=websocket; */
 	    } else if('MozWebSocket' in window) {
@@ -1445,8 +1445,8 @@ $(function(){
 	    // 打开时
 	    websocket.onopen = function(evnt) {
 	    	var msg = {
-		            msgContent: "${jspCode}上线了",
-		            postsId: 1
+		            msgContent: "${user.username}上线了",
+		            username: "${user.username}"
 		        };
 	    	websocket.send(JSON.stringify(msg));
 	    	console.log("  websocket.onopen  ");
