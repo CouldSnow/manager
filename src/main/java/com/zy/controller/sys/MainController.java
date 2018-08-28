@@ -1,5 +1,6 @@
 package com.zy.controller.sys;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,6 +69,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/upload")
+	@RequiresPermissions("main:upload")
 	public String toUpLoad() {
 		return "/system/upload/upload";
 	}

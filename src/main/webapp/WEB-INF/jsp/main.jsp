@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% String path = request.getContextPath();
 String websocketPath =request.getServerName() + ":" + request.getServerPort()
@@ -1346,11 +1347,13 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
+  <shiro:hasRole name="admin">
   <li class="desktop_icon" id="win11" path="${path}/main/upload"> <span class="icon"><img src="${path}/static/ui/icon/file1.png"/></span>
     <div class="text">资源上传
       <div class="right_cron"></div>
     </div>
   </li>
+</shiro:hasRole>
   <li class="desktop_icon" id="win12" path="${path}/main/websocket"> <span class="icon"><img src="${path}/static/ui/icon/websocket.png"/></span>
     <div class="text">websocket
       <div class="right_cron"></div>

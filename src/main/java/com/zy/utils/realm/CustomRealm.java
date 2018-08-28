@@ -30,9 +30,14 @@ public class CustomRealm extends AuthorizingRealm{
 		permissions.add("user:create");
 		permissions.add("user:delete");
 		
+		List<String> roles=new ArrayList<String>();
+		roles.add("admin");
+		
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new  SimpleAuthorizationInfo();
 		
 		simpleAuthorizationInfo.addStringPermissions(permissions);
+		
+		simpleAuthorizationInfo.addRoles(roles);
 		
 		return simpleAuthorizationInfo;
 	}
