@@ -4,7 +4,7 @@
 String websocketPath =request.getServerName() + ":" + request.getServerPort()
 + path + "/";
 pageContext.setAttribute("websocketPath", websocketPath);
-		pageContext.setAttribute("path", path);
+pageContext.setAttribute("path", path);
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -1336,28 +1336,33 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win8" path="${path}/main/formBuilder"> <span class="icon"><img src="${path}/static/ui/icon/form.png"/></span>
+  <li class="desktop_icon" id="win8" path="${path}/main/formBuilder"> <span class="icon"><img src="${path}/static/ui/icon/tools.png"/></span>
     <div class="text">工具Demo
       <div class="right_cron"></div>
     </div>
   </li>
-   <li class="desktop_icon" id="win10" path="${path}/main/interfaceTest"> <span class="icon"><img src="${path}/static/ui/icon/interface1.png"/></span>
+   <li class="desktop_icon" id="win10" path="${path}/main/interfaceTest"> <span class="icon"><img src="${path}/static/ui/icon/interface2.png"/></span>
     <div class="text">接口测试器
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win11" path="${path}/main/upload"> <span class="icon"><img src="${path}/static/ui/icon/file.png"/></span>
+  <li class="desktop_icon" id="win11" path="${path}/main/upload"> <span class="icon"><img src="${path}/static/ui/icon/file1.png"/></span>
     <div class="text">资源上传
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win12" path="${path}/main/websocket"> <span class="icon"><img src="${path}/static/ui/icon/icon6.png"/></span>
+  <li class="desktop_icon" id="win12" path="${path}/main/websocket"> <span class="icon"><img src="${path}/static/ui/icon/websocket.png"/></span>
     <div class="text">websocket
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win12" path="http://www.bootcss.com/p/layoutit/"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap.png"/></span>
+  <li class="desktop_icon" id="win13" path="http://www.bootcss.com/p/layoutit/"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap4.png"/></span>
     <div class="text">bootstrap
+      <div class="right_cron"></div>
+    </div>
+  </li>
+  <li class="desktop_icon" id="win14" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap3.png"/></span>
+    <div class="text">逆向工程
       <div class="right_cron"></div>
     </div>
   </li>

@@ -6,8 +6,8 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 public class MD5Test {
 	
 	public static void main(String[]args) {
-		String source = "11111111";
-		String salt="sssssfsdf";
+		String source = "admin";
+		String salt="admin";
 		int hashIterations=2;
 		
 		Md5Hash md5  = new Md5Hash(source, salt, hashIterations);

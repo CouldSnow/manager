@@ -11,6 +11,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 public class CustomRealm extends AuthorizingRealm{
 
@@ -45,8 +46,12 @@ public class CustomRealm extends AuthorizingRealm{
 		String userCode =(String)token.getPrincipal();
 		//二。根据userCode从数据库查询 如果查询不到返回null，如果查询到返回认证信息AuthenticationInfo
 		//查询密码
-		String password="123456";
-		SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(userCode, password, this.getName());
+		//这里的密码是数据库查出来的经过加盐md5加密
+		String password="3ef7164d1f6167cb9f2658c07d3c2f0a";
+		String salt="admin";
+		
+		SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(userCode, password, ByteSource.Util.bytes(salt), this.getName());
+		//SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(userCode, password, this.getName());
 		
 		
 		return simpleAuthenticationInfo;
