@@ -1364,7 +1364,7 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
-  <li class="desktop_icon" id="win14" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap3.png"/></span>
+  <li class="desktop_icon" id="win14" path="${path }/main/createcode"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap3.png"/></span>
     <div class="text">逆向工程
       <div class="right_cron"></div>
     </div>

@@ -81,4 +81,13 @@ public class MainController {
 	public String towebsocket() {
 		return "/system/websocket/websocket";
 	}
+	
+	/**
+	 * 从main页面跳转到生成代码页面
+	 * @return
+	 */
+	@RequestMapping("/createcode")
+	public String tocreatecode() {
+		return "/system/tools/createcode/createcode";
+	}
 }

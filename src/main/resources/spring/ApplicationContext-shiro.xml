@@ -32,7 +32,7 @@
                 /static/** = anon
                /plugins/** = anon
                /login=anon
-              
+              /main/income=anon
                 <!-- 对错误页面放行 -->
                 <!-- 验证码，可匿名访问 -->
                <!--  /validatecode.jsp = anon -->
@@ -90,7 +90,7 @@
     <!-- 会话管理器 -->
  <!--    <bean id="sessionManager"  class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         session的失效时长，单位毫秒
-        <property name="globalSessionTimeout" value="-1" />
+        <property name="globalSessionTimeout" value="-1000" />
         删除失效的session
         <property name="deleteInvalidSessions" value="true" />
     </bean> -->
