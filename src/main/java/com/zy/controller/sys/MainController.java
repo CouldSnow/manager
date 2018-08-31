@@ -90,4 +90,13 @@ public class MainController {
 	public String tocreatecode() {
 		return "/system/tools/createcode/createcode";
 	}
+	
+	/**
+	 * 从main页面跳转到影视页面
+	 * @return
+	 */
+	@RequestMapping("/movie")
+	public String tomovie() {
+		return "/system/tools/movie/movie";
+	}
 }

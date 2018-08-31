@@ -1369,11 +1369,16 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
+   <li class="desktop_icon" id="win14" path="${path }/main/movie"> <span class="icon"><img src="${path}/static/ui/icon/bootstrap1.png"/></span>
+    <div class="text">视频解析
+      <div class="right_cron"></div>
+    </div>
+  </li>
  <%--  
  
   
   
-  <li class="desktop_icon" id="win14" path="http://www.198zone.com"> <span class="icon"><img src="${path}/static/ui/icon/icon7.png"/></span>
+  <li class="desktop_icon" id="win14" path="http://www.a6a6.org/"> <span class="icon"><img src="${path}/static/ui/icon/icon7.png"/></span>
     <div class="text">聊天室
       <div class="right_cron"></div>
     </div>

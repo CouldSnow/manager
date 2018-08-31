@@ -77,9 +77,9 @@
 				</form>
 			  </div>
 		</div>
-		<div class="page-header">
+		<!-- <div class="page-header">
 		  <h3>数据库列表 <small></small></h3>
-		</div>
+		</div> -->
 			<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -91,4 +91,8 @@
 				</table>
 	</div>
 </body>
+<script type="text/javascript">
+	
+	console.log(window.console);
+</script>
 </html>
