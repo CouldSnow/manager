@@ -1,9 +1,14 @@
 package com.zy.entity.sys;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class Permission {
 
+	/**
+	 * 
+	 */
+	
 	private int permissionid;
 	private String permissionname;
 	private Date createDate;

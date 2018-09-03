@@ -1,5 +1,6 @@
 package com.zy.entity.sys;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class User {
 	`createDate`  datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP ,
 	`editDate`  datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP ,
 	`loginDate`  datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP ,*/
-	
+
 	public int getUserid() {
 		return userid;
 	}

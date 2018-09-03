@@ -1,9 +1,14 @@
 package com.zy.entity.sys;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class Role {
 
+	/**
+	 * 
+	 */
+	
 	private int roleid;
 	private String rolename;
 	private Date createDate;
