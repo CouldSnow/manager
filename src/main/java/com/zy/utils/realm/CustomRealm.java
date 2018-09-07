@@ -49,7 +49,10 @@ public class CustomRealm extends AuthorizingRealm{
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		//一。从token中取出身份
 		String userCode =(String)token.getPrincipal();
+		
 		//二。根据userCode从数据库查询 如果查询不到返回null，如果查询到返回认证信息AuthenticationInfo
+		if(!userCode.equals("zhengyan"))
+			return null;
 		//查询密码
 		//这里的密码是数据库查出来的经过加盐md5加密
 		String password="3ef7164d1f6167cb9f2658c07d3c2f0a";

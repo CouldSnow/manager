@@ -99,4 +99,12 @@ public class MainController {
 	public String tomovie() {
 		return "/system/tools/movie/movie";
 	}
+	/**
+	 * 从main页面跳转到测试页面
+	 * @return
+	 */
+	@RequestMapping("/test")
+	public String totest() {
+		return "/system/test/test";
+	}
 }

@@ -1374,6 +1374,11 @@ $(function(){
       <div class="right_cron"></div>
     </div>
   </li>
+  <li class="desktop_icon" id="win15" path="${path }/main/test"> <span class="icon"><img src="${path}/static/ui/icon/install.png"/></span>
+    <div class="text">测试地址
+      <div class="right_cron"></div>
+    </div>
+  </li>
  <%--  
  
   
