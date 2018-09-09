@@ -60,7 +60,7 @@ html {
 }
 body {
 	font-size: 12px;
-	 background:#06C url(${path}/static/ui/wallpapers/bg001.jpg) no-repeat scroll center center; 
+	  background:#06C url(${path}/static/ui/wallpapers/bg001.jpg) no-repeat scroll center center;  
 	/* background:#06C url(${path}/static/ui/wallpapers/gif006.gif) repeat scroll center center; */
 	font-family: Tahoma, Geneva, sans-serif;
 	margin:0;
@@ -1301,7 +1301,7 @@ $(function(){
 		   })
 </script>
 </head>
-<body>
+<body >
 <!-- <a href="#" class="powered_by">Powered by jWebOS</a> -->
 <div id="topBar">
   <div id="task_lb_wrap">
@@ -1484,5 +1484,23 @@ $(function(){
 	    };
 
 	});
+	
+	//动态变背景
+	function initbg(){
+		setInterval("changebg()",1000);
+	}
+	
+	var i=0;
+	function changebg(){
+		i++;
+		/* document.body.style.background="#06C url(${path}/static/ui/wallpapers/bg00"+i+".jpg) no-repeat scroll center center;"  */
+		
+		$('body').css("background","url(${path}/static/ui/wallpapers/bg00"+i+".jpg)")
+		if(i==3){
+			i=0;
+		}
+	}
+ 	
+	//动态变背景end
 </script>
 </html>

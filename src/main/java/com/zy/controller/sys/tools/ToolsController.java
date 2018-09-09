@@ -32,6 +32,11 @@ public class ToolsController {
 		}
 	}
 	
+	/**
+	 * 推送
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping("propelling")
 	@ResponseBody
 	public Msg propelling(@RequestBody Map<String,String> map) {
